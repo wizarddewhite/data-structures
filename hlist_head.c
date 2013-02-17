@@ -59,7 +59,7 @@ struct hlist_node {
 
 int main()
 {
-    char s[10] = "12344567";
+    const unsigned char s[10] = "12344567";
 
     printf("hash of %s is %u\n",s, full_name_hash(s, sizeof(s)));
     return 0;
