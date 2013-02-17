@@ -40,7 +40,6 @@ public:
     DlinkList():head(NULL) {}
     void insert(C element)
     {
-        Node<C> *tmp ;
         Node<C> *node = new Node<C>(element);
         if (!head)
         {
@@ -50,7 +49,6 @@ public:
         }
         else
         {
-            tmp = head;
             node->next = head;
             node->prior = head->prior;
             

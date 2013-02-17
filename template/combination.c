@@ -30,6 +30,8 @@ int main()
 {
     combination(5, STACK_SIZE);
     printf("\n");
+    
+    return 0;
 }
 
 

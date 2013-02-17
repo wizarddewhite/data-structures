@@ -19,7 +19,6 @@ using namespace std;
 
 int main()
 {
-    int i;
     BinaryTree<int> T;
     TNode<int>      *node;
     T.insert(5);

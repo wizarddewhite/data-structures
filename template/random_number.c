@@ -17,12 +17,12 @@
  */
 #include<stdio.h>
 #include<stdlib.h>
+#include<time.h>
 /*
  *  Generate a random number in range x
  */
 int random_num(int start, int range)
 {
-    int i;
     return (start + rand()%range);
 }
 

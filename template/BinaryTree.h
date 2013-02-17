@@ -162,12 +162,10 @@ public:
     }
     void inorder()
     {
-        TNode<C>  *node = root;
         __inorder(root);
     }
     void preorder()
     {
-        TNode<C>  *node = root;
         __preorder(root);
     }
     void iter_inorder()

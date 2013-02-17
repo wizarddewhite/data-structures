@@ -37,6 +37,8 @@ public:
         }
 //        cout << top << endl;
         stack[++top] = item;
+
+	return 0;
     }
     C pop()
     {
