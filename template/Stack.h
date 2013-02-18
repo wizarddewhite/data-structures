@@ -27,7 +27,7 @@ template <class C> class Stack
     int top;
 public:
     Stack():top(-1){};
-    ~Stack(){ cout << "release Stack" << endl;}
+    ~Stack(){ /* cout << "release Stack" << endl; */}
     int push(C item)
     {
         if (top >= (MAX_STACK_SIZE -1))

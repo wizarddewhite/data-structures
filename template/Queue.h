@@ -28,8 +28,8 @@ template <class C> class Queue
     int rear;
     int front;
 public:
-    Queue():rear(0), front(0){cout << "Queue is initialized" << endl;}
-    ~Queue(){ cout << "release Queue" << endl;}
+    Queue():rear(0), front(0){/* cout << "Queue is initialized" << endl; */}
+    ~Queue(){/* cout << "release Queue" << endl; */}
     bool isFull()
     {
         if (front == (rear+1)%MAX_QUEUE_SIZE)
