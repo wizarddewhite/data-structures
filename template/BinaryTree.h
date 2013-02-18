@@ -18,6 +18,7 @@
 #ifndef    __BINARYTREE_H__
 #define    __BINARYTREE_H__
 #include	<iostream>
+#include	<iomanip>
 using namespace std;
 #include	"Stack.h"
 #include	"Queue.h"
@@ -38,18 +39,19 @@ public:
 template <class C> class BinaryTree
 {
     TNode<C>    *root;
-    void __inorder(TNode<C> *t)
+    void __inorder(TNode<C> *t, int level)
     {
         if (!t)
             return;
 
         if (t->lchild)
-            __inorder(t->lchild);
+            __inorder(t->lchild, level + 1);
         
-        cout << t->data << " " << endl;
+	cout.setf(ios::right);
+        cout << setw(level*3) << t->data << "(" << level << ")" << endl;
         
         if (t->rchild)
-            __inorder(t->rchild);
+            __inorder(t->rchild, level + 1);
     }
     void __preorder(TNode<C> *t)
     {
@@ -162,7 +164,7 @@ public:
     }
     void inorder()
     {
-        __inorder(root);
+        __inorder(root, 0);
     }
     void preorder()
     {
