@@ -49,5 +49,9 @@ int main()
 
 	create_mt(&T);
 	T.inorder();
+
+	cout << "test on walk " << endl;
+	T.walk();
+
 	return 0;
 }

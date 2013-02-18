@@ -57,6 +57,14 @@ template <class C> class MultiTree
 			__inorder(t->peer, level + 1);
 	}
 
+	TNode<C>* next_node(TNode<C>* parent, TNode<C>* child) 
+	{
+		if (!child) {
+			return parent?parent->child:NULL;
+		}
+
+		return child->peer;
+	}
 public:
 	MultiTree(): root(NULL) {}
 
@@ -93,6 +101,55 @@ public:
 	void inorder()
 	{
 		__inorder(root, 0);
+	}
+
+	void walk()
+	{
+		bool node_previously_visited = false;
+		TNode<C> *parent;
+		TNode<C> *child;
+		int level;
+
+		/* An empty tree */
+		if (!root)
+			return;
+
+		parent = root;
+		child = next_node(parent, NULL);
+		level = 1;
+
+		while(level > 0 && child) {
+			if (!node_previously_visited) {
+				//cout << "first " << child->data << endl;
+			} else {
+				cout << "second " << child->data << endl;
+			}
+
+			if (!node_previously_visited) {
+				if (child->child) {
+					level++;
+					parent = child;
+					child = next_node(parent, NULL);
+					continue;
+				}
+			}
+
+			if (!node_previously_visited) {
+				node_previously_visited = true;
+				continue;
+			}
+
+			child = next_node(parent, child);
+			if (child)
+				node_previously_visited = false;
+			else {
+				level--;
+				child = parent;
+				parent = parent->parent;
+
+				node_previously_visited = true;
+			}
+		}
 	}
 	
 };
