@@ -17,6 +17,8 @@
  */
 #include	<stdio.h>
 
+#define DEBUG 1
+
 int A[10] = {1, 3, 6, 9, 8, 2, 5, 4, 7, 10};
 
 
@@ -88,6 +90,31 @@ void MaxHeapify(int* A, int size, int i)
 	}
 }
 
+void MaxHeapify_iter(int* A, int size, int i)
+{
+	int left, right;
+	int largest;
+	int tmp;
+
+	for(; i < size; i = largest) {
+		largest = i;
+		left  = left_child(i);
+		right = right_child(i);
+
+		if ((left < size) && (A[left] > A[i]))
+			largest = left;
+		if ((right < size) && (A[right] > A[largest]))
+			largest = right;
+
+		if (largest == i)
+			break;
+
+		tmp = A[largest];
+		A[largest] = A[i];
+		A[i] = tmp;
+	}
+}
+
 /*
  *  BuildMaxHeap, O(n) algorithm
  *  Make the array A, length of len, compile to a max heap
@@ -97,7 +124,7 @@ void BuildMaxHeap(int* A, int size)
 	int start = (size >> 1) - 1;
 	for(; start>=0; start--)
 	{
-		MaxHeapify(A, size, start);
+		MaxHeapify_iter(A, size, start);
 	}
 }
 
@@ -116,7 +143,7 @@ void HeapSort(int* A, int len)
 
 		dump_heap(A, len, 0, 0, "=== Exchange the biggest ===");
 		len--;
-		MaxHeapify(A, len, 0);
+		MaxHeapify_iter(A, len, 0);
 		dump_heap(A, len, 0, 0, "=== After Heapify ===");
 	}
 }
