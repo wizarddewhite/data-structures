@@ -2,4 +2,6 @@
 !*.c
 !*.cpp
 !*.h
+!makefile
 !.gitignore
+!sort

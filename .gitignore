@@ -2,5 +2,7 @@
 !*.c
 !*.cpp
 !*.h
+!makefile
 !template
+!template/sort
 !.gitignore
