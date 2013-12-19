@@ -22,15 +22,24 @@
 using namespace std;
 #include	"Stack.h"
 #include	"Queue.h"
+
+enum visit
+{
+	no,
+	once,
+	twice
+};
+
 template <class C> class TNode
 {
 public:
     C        data;
+    enum visit stat;
     TNode<C> *parent;
     TNode<C> *lchild;
     TNode<C> *rchild;
-    TNode():parent(NULL),lchild(NULL), rchild(NULL) {}
-    TNode(C elem, TNode<C> *p):parent(p),lchild(NULL), rchild(NULL) 
+    TNode():stat(no),parent(NULL),lchild(NULL), rchild(NULL){}
+    TNode(C elem, TNode<C> *p):stat(no),parent(p),lchild(NULL),rchild(NULL)
     {
         data = elem;
     }
@@ -301,6 +310,38 @@ public:
             y = node->parent;
         }
         return y;
+    }
+    void depth_first()
+    {
+        Stack<TNode<C>*>  stack;
+        TNode<C>         *node   = root;
+
+	while (1)
+	{
+		if (!node) {
+			if (stack.isEmpty())
+				break;
+			else
+				node = stack.pop();
+		}
+
+		if (node->stat == no) {
+			node->stat = once;
+			stack.push(node);
+			node = node->lchild;
+			continue;
+		}else if (node->stat == once) {
+			node->stat = twice;
+			cout << node->data << endl;
+			stack.push(node);
+			node = node->rchild;
+			continue;
+		}else if (node->stat == twice) {
+			if (stack.isEmpty())
+				break;
+			node = stack.pop();
+		}
+	}
     }
 };
 #endif      //__BINARYTREE_H__

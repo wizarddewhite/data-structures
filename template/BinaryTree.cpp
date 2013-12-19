@@ -33,29 +33,42 @@ TNode<int>* search(BinaryTree<int> *T, int val)
 	return T->iter_search(val);
 }
 
-int main()
+void BT_traverse()
 {
     BinaryTree<int> T;
     create_bt(&T);
-//    cout << "iter inorder" << endl;
-//    T.iter_preorder();
-//    T.level_order();
-//    node = T.min();
-//    cout << "found node " << node->data << endl;
-//    while (node)
-//    {
-//        node = T.successor(node);
-//        if (node)
-//        cout << "found node " << node->data << endl;
-//    }
-//    node = T.max();
-//    cout << "found node " << node->data << endl;
-//    while (node)
-//    {
-//        node = T.predecessor(node);
-//        if (node)
-//        cout << "found node " << node->data << endl;
-//    }
+    cout << "BinaryTree inorder traverse" << endl;
     T.inorder();
-    return 0;
+}
+
+void BT_depth_first()
+{
+    BinaryTree<int> T;
+
+    T.insert(5);
+    T.insert(104);
+    T.insert(2);
+    T.insert(3);
+    T.insert(10);
+    T.insert(130);
+    T.insert(60);
+    T.insert(9);
+    T.insert(78);
+    T.insert(11);
+    T.insert(8);
+
+    cout << "BinaryTree inorder traverse" << endl;
+    T.inorder();
+
+    /* You see the depth-first traverse result
+     * is ordered
+     */
+    cout << "BinaryTree depth-first traverse" << endl;
+    T.depth_first();
+}
+
+int main()
+{
+	BT_depth_first();
+	return 0;
 }
