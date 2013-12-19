@@ -316,30 +316,29 @@ public:
         Stack<TNode<C>*>  stack;
         TNode<C>         *node   = root;
 
-	while (1)
+	for (;node || !stack.isEmpty();)
 	{
-		if (!node) {
-			if (stack.isEmpty())
-				break;
-			else
-				node = stack.pop();
-		}
+		if (!node)
+			node = stack.pop();
 
-		if (node->stat == no) {
+		switch (node->stat) {
+		case no:
 			node->stat = once;
 			stack.push(node);
 			node = node->lchild;
-			continue;
-		}else if (node->stat == once) {
+			break;
+		case once:
 			node->stat = twice;
 			cout << node->data << endl;
 			stack.push(node);
 			node = node->rchild;
-			continue;
-		}else if (node->stat == twice) {
-			if (stack.isEmpty())
-				break;
-			node = stack.pop();
+			break;
+		case twice:
+			node = NULL;
+			break;
+		default:
+			cout << "Error state of node!" << endl;
+			return;
 		}
 	}
     }
